@@ -1,13 +1,37 @@
 <html>
   <head>
     <script>
-      function add() {
-        let Counter = document.querySelector(".counter").innerText;
+        let interval=setInterval("auto(1)",1000)
+      function add(number) {
+        let Counter = document.querySelector(".Counter").innerText;
         Counter = parseInt(Counter, 10);
-        document.querySelector(".counter").innerText = Counter + 1;
+        document.querySelector(".counter").innerText = Counter + number;
+      }
+      function auto(number){
+        let Counter = document.querySelector(".Counter").innerText;
+        Counter = parseInt(Counter, 10);
+        let farmers=document.querySelector(".farmers").innerText;
+        number=number*farmers;
+        document.querySelector(".counter").innerText = Counter + number;
       }
       function buy(price){
-          document.querySelector(".counter")=Counter-price;
+          clearInterval(interval)
+        let Counter = document.querySelector(".Counter").innerText;
+        let farmers=document.querySelector(".farmers").innerText;
+        farmers=parseInt(farmers,10);
+        Counter=parseInt(Counter,10);
+        if(Counter>=price){
+            document.querySelector(".Counter").innerText = Counter -price;
+            document.querySelector(".farmers").innerText=farmers + 1;
+            interval=setInterval("auto(1)",1000)
+            
+
+        }
+        else{
+            alert("not enough clicks!")
+            clearInterval(interval)
+            interval=setInterval("auto(1)",1000)
+        }
       }
     </script>
 
@@ -18,10 +42,14 @@
     </div>
 
     <div>
-      <button onclick="add()">Click Me !!!</button>
+      <button onclick="add(1)">Click Me !!!</button>
     </div>
     <div>
-        
+        <h1>SHOP</h1>
+    </div>
+    <div>
+        <button onclick="buy(20)">Farmer Cost:20</button>
+        farmers owned: <span class="farmers">0</span>
     </div>
 
 
